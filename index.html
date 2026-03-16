@@ -3,12 +3,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Playground Scripts</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body, * { -webkit-box-sizing: border-box; box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
 –bg:       #04060d;
@@ -24,13 +24,22 @@
 –glow2:    0 0 20px rgba(0,212,255,.15);
 }
 
+html {
+background: #04060d;
+}
+
 body {
-font-family: ‘Rajdhani’, sans-serif;
-background: var(–bg);
-color: var(–text);
+font-family: ‘Rajdhani’, ‘Arial’, sans-serif;
+background-color: #04060d !important;
+background: #04060d !important;
+color: #c8d8f0;
 min-height: 100vh;
+min-height: -webkit-fill-available;
+display: -webkit-flex;
 display: flex;
+-webkit-justify-content: center;
 justify-content: center;
+-webkit-align-items: flex-start;
 align-items: flex-start;
 padding: 32px 16px;
 overflow-x: hidden;
@@ -40,7 +49,10 @@ overflow-x: hidden;
 body::before {
 content: ‘’;
 position: fixed;
-inset: 0;
+top: 0; left: 0; right: 0; bottom: 0;
+background-image:
+-webkit-linear-gradient(rgba(0,212,255,.03) 1px, transparent 1px),
+-webkit-linear-gradient(90deg, rgba(0,212,255,.03) 1px, transparent 1px);
 background-image:
 linear-gradient(rgba(0,212,255,.03) 1px, transparent 1px),
 linear-gradient(90deg, rgba(0,212,255,.03) 1px, transparent 1px);
@@ -56,9 +68,11 @@ top: -50%;
 left: -20%;
 width: 60%;
 height: 60%;
+background: -webkit-radial-gradient(ellipse, rgba(124,58,237,.07) 0%, transparent 70%);
 background: radial-gradient(ellipse, rgba(124,58,237,.07) 0%, transparent 70%);
 pointer-events: none;
 z-index: 0;
+-webkit-animation: drift 12s ease-in-out infinite alternate;
 animation: drift 12s ease-in-out infinite alternate;
 }
 
@@ -72,14 +86,21 @@ position: relative;
 z-index: 1;
 width: 420px;
 max-width: 100%;
-background: var(–surface);
-border: 1px solid var(–border);
+background-color: #080e1a;
+background: #080e1a;
+border: 1px solid #1a2d50;
 border-radius: 4px;
 padding: 0;
+-webkit-box-shadow: 0 0 60px rgba(0,0,0,.7), inset 0 1px 0 rgba(0,212,255,.08);
 box-shadow: 0 0 60px rgba(0,0,0,.7), inset 0 1px 0 rgba(0,212,255,.08);
+-webkit-animation: slideUp .5s cubic-bezier(.16,1,.3,1) both;
 animation: slideUp .5s cubic-bezier(.16,1,.3,1) both;
 }
 
+@-webkit-keyframes slideUp {
+from { opacity: 0; -webkit-transform: translateY(24px); transform: translateY(24px); }
+to   { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+}
 @keyframes slideUp {
 from { opacity: 0; transform: translateY(24px); }
 to   { opacity: 1; transform: translateY(0); }
@@ -87,11 +108,13 @@ to   { opacity: 1; transform: translateY(0); }
 
 /* top bar */
 .topbar {
+display: -webkit-flex;
 display: flex;
+-webkit-align-items: center;
 align-items: center;
 gap: 6px;
 padding: 10px 14px;
-border-bottom: 1px solid var(–border);
+border-bottom: 1px solid #1a2d50;
 background: rgba(0,212,255,.03);
 }
 
@@ -215,15 +238,21 @@ scrollbar-color: var(–border) transparent;
 .script-list::-webkit-scrollbar-thumb { background: var(–border); border-radius: 2px; }
 
 .script-card {
+display: -webkit-flex;
 display: flex;
+-webkit-justify-content: space-between;
 justify-content: space-between;
+-webkit-align-items: center;
 align-items: center;
 padding: 9px 12px;
 margin-bottom: 4px;
-background: var(–card);
+background-color: #0b1425;
+background: #0b1425;
 border: 1px solid transparent;
 border-radius: 3px;
+-webkit-transition: border-color .18s, background .18s, -webkit-transform .18s;
 transition: border-color .18s, background .18s, transform .18s;
+-webkit-animation: fadeIn .3s ease both;
 animation: fadeIn .3s ease both;
 position: relative;
 overflow: hidden;
@@ -234,19 +263,25 @@ content: ‘’;
 position: absolute;
 left: 0; top: 0; bottom: 0;
 width: 2px;
-background: var(–accent);
+background: #00d4ff;
 opacity: 0;
+-webkit-transition: opacity .2s;
 transition: opacity .2s;
 }
 
 .script-card:hover {
-border-color: var(–border);
+border-color: #1a2d50;
 background: #0e1d35;
+-webkit-transform: translateX(2px);
 transform: translateX(2px);
 }
 
 .script-card:hover::before { opacity: 1; }
 
+@-webkit-keyframes fadeIn {
+from { opacity: 0; -webkit-transform: translateY(6px); transform: translateY(6px); }
+to   { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+}
 @keyframes fadeIn {
 from { opacity: 0; transform: translateY(6px); }
 to   { opacity: 1; transform: translateY(0); }
@@ -269,32 +304,47 @@ letter-spacing: .02em;
 }
 
 .copy-btn {
-border: 1px solid var(–border);
+border: 1px solid #1a2d50;
 background: transparent;
-color: var(–muted);
+color: #4a6080;
 padding: 5px 10px;
 border-radius: 2px;
-font-family: ‘Share Tech Mono’, monospace;
+font-family: ‘Share Tech Mono’, ‘Courier New’, monospace;
 font-size: 10px;
 letter-spacing: .06em;
 cursor: pointer;
 text-transform: uppercase;
+-webkit-transition: all .18s;
 transition: all .18s;
+-webkit-flex-shrink: 0;
 flex-shrink: 0;
+-webkit-appearance: none;
+appearance: none;
 }
 
 .copy-btn:hover {
-border-color: var(–accent);
-color: var(–accent);
-box-shadow: var(–glow2);
+border-color: #00d4ff;
+color: #00d4ff;
+-webkit-box-shadow: 0 0 20px rgba(0,212,255,.15);
+box-shadow: 0 0 20px rgba(0,212,255,.15);
 background: rgba(0,212,255,.05);
 }
 
 .copy-btn.copied {
-border-color: var(–green);
-color: var(–green);
+border-color: #00ff88;
+color: #00ff88;
+-webkit-box-shadow: 0 0 12px rgba(0,255,136,.2);
 box-shadow: 0 0 12px rgba(0,255,136,.2);
 background: rgba(0,255,136,.05);
+}
+
+@-webkit-keyframes drift {
+from { -webkit-transform: translate(0, 0); transform: translate(0, 0); }
+to   { -webkit-transform: translate(10%, 8%); transform: translate(10%, 8%); }
+}
+@keyframes drift {
+from { transform: translate(0, 0); }
+to   { transform: translate(10%, 8%); }
 }
 
 /* footer */
