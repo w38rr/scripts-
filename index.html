@@ -71,9 +71,7 @@
 <div class="container">
     <h1>Roblox Script Hub 🚀</h1>
 
-    <textarea id="scriptBox" readonly>
-loadstring(game:HttpGet("https://your-script-link-here"))()
-    </textarea>
+    <textarea id="scriptBox" readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/All%20characters"))()</textarea>
 
     <button onclick="copyScript()">Copy Script</button>
 
@@ -81,16 +79,15 @@ loadstring(game:HttpGet("https://your-script-link-here"))()
 </div>
 
 <script>
-function copyScript() {
-    const script = document.getElementById("scriptBox");
-    script.select();
-    script.setSelectionRange(0, 99999);
+async function copyScript() {
+    const script = document.getElementById("scriptBox").value;
 
-    navigator.clipboard.writeText(script.value).then(() => {
-        document.getElementById("status").innerText = "✅ Script copied to clipboard!";
-    }).catch(() => {
-        document.getElementById("status").innerText = "❌ Failed to copy.";
-    });
+    try {
+        await navigator.clipboard.writeText(script);
+        document.getElementById("status").innerText = "✅ Script copied!";
+    } catch {
+        document.getElementById("status").innerText = "❌ Copy failed";
+    }
 }
 </script>
 
