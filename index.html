@@ -3,70 +3,84 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Roblox Script Hub</title>
+<title>Playground Scripts</title>
 <style>
 body{
     margin:0;
     font-family:Arial,sans-serif;
-    background:linear-gradient(135deg,#0f172a,#1e293b);
+    background:linear-gradient(135deg,#0b1220,#1e293b);
     color:white;
     display:flex;
     justify-content:center;
     padding:20px;
 }
 .container{
-    width:380px;
-    background:rgba(30,41,59,.95);
-    border-radius:18px;
-    padding:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,.4);
+    width:420px;
+    background:rgba(15,23,42,.97);
+    border-radius:20px;
+    padding:24px;
+    box-shadow:0 20px 45px rgba(0,0,0,.45);
 }
 h1{
     text-align:center;
-    font-size:22px;
+    font-size:24px;
+    margin-bottom:18px;
+    font-weight:600;
 }
 input{
     width:100%;
     padding:12px;
-    margin:15px 0;
     border:none;
-    border-radius:10px;
-    background:#0f172a;
+    border-radius:12px;
+    background:#111827;
     color:white;
+    margin-bottom:16px;
+    font-size:14px;
+    outline:none;
 }
 .script-list{
-    max-height:500px;
+    max-height:540px;
     overflow-y:auto;
 }
 .script-card{
-    background:#0f172a;
-    border-radius:12px;
-    padding:12px;
+    background:#111827;
+    border-radius:14px;
+    padding:14px;
     margin-bottom:10px;
+    transition:.2s;
+}
+.script-card:hover{
+    transform:translateY(-2px);
+}
+.script-name{
+    margin-bottom:10px;
+    font-size:14px;
 }
 button{
     width:100%;
     padding:10px;
     border:none;
-    border-radius:8px;
-    background:#38bdf8;
+    border-radius:10px;
+    background:#2563eb;
     color:white;
     cursor:pointer;
+    font-size:14px;
 }
 button:hover{
-    background:#0ea5e9;
+    background:#1d4ed8;
 }
 .status{
     text-align:center;
-    margin-top:10px;
+    margin-top:14px;
     color:#22c55e;
+    font-size:14px;
 }
 </style>
 </head>
 <body>
 
 <div class="container">
-<h1>Roblox Script Hub 🚀</h1>
+<h1>Playground Scripts</h1>
 <input type="text" id="search" placeholder="Search scripts..." onkeyup="filterScripts()">
 <div class="script-list" id="scriptList"></div>
 <div class="status" id="status"></div>
@@ -90,7 +104,7 @@ const scripts = [
 ["FPV DRONE",'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/FPV%20DRONE"))()'],
 ["Fall and break bones",'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Fall%20and%20break%20bones"))()'],
 ["Fame",'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Fame"))()'],
-["Field Goal simulator",'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Field%20Goal%20simulator"))()'],
+["Field Goal Simulator",'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Field%20Goal%20simulator"))()'],
 ["Fireball Training",'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Fireball-Training"))()'],
 ["Flag Football",'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Flag%20football"))()'],
 ["Football Duals",'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Football%20duals"))()'],
@@ -111,7 +125,6 @@ const scripts = [
 ["Nose Battles",'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Nose%20battles"))()'],
 ["One Tap",'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/One-tap"))()'],
 ["Playground Basketball",'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Playground%20basketball"))()'],
-["Playground Scripts",'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Playground-Scripts"))()'],
 ["Point Sender",'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Point-sender"))()'],
 ["Poop",'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Poop"))()'],
 ["Quick Shot",'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Quck-shot"))()'],
@@ -129,9 +142,9 @@ function renderScripts(filter=""){
     list.innerHTML="";
     scripts.filter(s=>s[0].toLowerCase().includes(filter.toLowerCase()))
     .forEach(script=>{
-        list.innerHTML+=`
+        list.innerHTML += `
         <div class="script-card">
-            <div>${script[0]}</div>
+            <div class="script-name">${script[0]}</div>
             <button onclick='copyScript(${JSON.stringify(script[1])})'>Copy Script</button>
         </div>`;
     });
@@ -139,7 +152,7 @@ function renderScripts(filter=""){
 
 function copyScript(script){
     navigator.clipboard.writeText(script);
-    document.getElementById("status").innerText="✅ Script copied!";
+    document.getElementById("status").innerText="Copied";
 }
 
 function filterScripts(){
