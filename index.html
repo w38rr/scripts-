@@ -56,6 +56,11 @@ width: 400px;
 max-width: 100%;
 -webkit-animation: up .4s cubic-bezier(.16,1,.3,1) both;
 animation: up .4s cubic-bezier(.16,1,.3,1) both;
+display: none;
+}
+
+.container.unlocked {
+display: block;
 }
 
 @-webkit-keyframes up {
@@ -478,12 +483,432 @@ text-overflow: ellipsis;
 
 to   { height: 10px; }
 }
+
+/* ── ACCESS GATE ── */
+.gate-overlay {
+position: fixed;
+top: 0; left: 0; right: 0; bottom: 0;
+background: #000;
+z-index: 999;
+display: -webkit-flex;
+display: flex;
+-webkit-align-items: center;
+align-items: center;
+-webkit-justify-content: center;
+justify-content: center;
+-webkit-animation: none;
+animation: none;
+}
+
+.gate-overlay.hide {
+-webkit-animation: gateFade .5s ease forwards;
+animation: gateFade .5s ease forwards;
+pointer-events: none;
+}
+
+@-webkit-keyframes gateFade {
+from { opacity: 1; }
+to   { opacity: 0; }
+}
+@keyframes gateFade {
+from { opacity: 1; }
+to   { opacity: 0; }
+}
+
+.gate-box {
+width: 300px;
+max-width: calc(100vw - 32px);
+background: #0d0d0d;
+border: 1px solid #1e1e1e;
+border-radius: 10px;
+overflow: hidden;
+-webkit-box-shadow: 0 0 0 1px rgba(180,20,20,.06), 0 24px 60px rgba(0,0,0,.9);
+box-shadow: 0 0 0 1px rgba(180,20,20,.06), 0 24px 60px rgba(0,0,0,.9);
+-webkit-animation: up .4s cubic-bezier(.16,1,.3,1) both;
+animation: up .4s cubic-bezier(.16,1,.3,1) both;
+}
+
+.gate-header {
+padding: 14px 16px 10px;
+border-bottom: 1px solid #1a1a1a;
+position: relative;
+}
+
+.gate-header::after {
+content: ‘’;
+position: absolute;
+bottom: -1px; left: 16px;
+width: 28px; height: 2px;
+background: #c0392b;
+border-radius: 1px;
+-webkit-box-shadow: 0 0 8px rgba(192,57,43,.6);
+box-shadow: 0 0 8px rgba(192,57,43,.6);
+}
+
+.gate-title {
+font-size: 13px;
+font-weight: 600;
+color: #e8e8e8;
+letter-spacing: .01em;
+}
+
+.gate-sub {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 9px;
+color: #2d2d2d;
+margin-top: 3px;
+letter-spacing: .04em;
+}
+
+.gate-body {
+padding: 14px 16px;
+}
+
+.gate-label {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 9px;
+color: #444;
+letter-spacing: .06em;
+text-transform: uppercase;
+margin-bottom: 6px;
+}
+
+.gate-input-wrap {
+position: relative;
+}
+
+.gate-input {
+width: 100%;
+padding: 8px 36px 8px 10px;
+background: #111;
+border: 1px solid #1e1e1e;
+border-radius: 6px;
+color: #e8e8e8;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 13px;
+letter-spacing: .08em;
+outline: none;
+-webkit-transition: border-color .15s, box-shadow .15s;
+transition: border-color .15s, box-shadow .15s;
+-webkit-appearance: none;
+}
+
+.gate-input::placeholder { color: #2a2a2a; letter-spacing: .04em; }
+
+.gate-input:focus {
+border-color: rgba(192,57,43,.4);
+-webkit-box-shadow: 0 0 0 3px rgba(192,57,43,.07);
+box-shadow: 0 0 0 3px rgba(192,57,43,.07);
+}
+
+.gate-input.error {
+border-color: rgba(192,57,43,.7) !important;
+-webkit-box-shadow: 0 0 0 3px rgba(192,57,43,.12) !important;
+box-shadow: 0 0 0 3px rgba(192,57,43,.12) !important;
+-webkit-animation: shake .3s ease;
+animation: shake .3s ease;
+}
+
+@-webkit-keyframes shake {
+0%,100% { -webkit-transform: translateX(0); }
+25%      { -webkit-transform: translateX(-6px); }
+75%      { -webkit-transform: translateX(6px); }
+}
+@keyframes shake {
+0%,100% { transform: translateX(0); }
+25%      { transform: translateX(-6px); }
+75%      { transform: translateX(6px); }
+}
+
+.gate-toggle {
+position: absolute;
+right: 10px;
+top: 50%;
+-webkit-transform: translateY(-50%);
+transform: translateY(-50%);
+background: none;
+border: none;
+color: #333;
+cursor: pointer;
+font-size: 11px;
+font-family: ‘Share Tech Mono’, monospace;
+padding: 0;
+-webkit-appearance: none;
+-webkit-transition: color .15s;
+transition: color .15s;
+}
+.gate-toggle:hover { color: #666; }
+
+.gate-error {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 9px;
+color: #c0392b;
+margin-top: 6px;
+letter-spacing: .04em;
+min-height: 13px;
+-webkit-transition: opacity .2s;
+transition: opacity .2s;
+}
+
+.gate-btn {
+width: 100%;
+margin-top: 12px;
+padding: 9px;
+background: rgba(192,57,43,.12);
+border: 1px solid rgba(192,57,43,.35);
+border-radius: 6px;
+color: #c0392b;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 11px;
+letter-spacing: .08em;
+text-transform: uppercase;
+cursor: pointer;
+-webkit-transition: all .15s;
+transition: all .15s;
+-webkit-appearance: none;
+}
+
+.gate-btn:hover, .gate-btn:active {
+background: rgba(192,57,43,.2);
+border-color: #c0392b;
+}
+
+/* ── SETTINGS PANEL ── */
+.settings-overlay {
+position: fixed;
+top: 0; left: 0; right: 0; bottom: 0;
+background: rgba(0,0,0,.85);
+z-index: 1100;
+display: -webkit-flex;
+display: flex;
+-webkit-align-items: center;
+align-items: center;
+-webkit-justify-content: center;
+justify-content: center;
+opacity: 0;
+pointer-events: none;
+-webkit-transition: opacity .2s;
+transition: opacity .2s;
+}
+
+.settings-overlay.open {
+opacity: 1;
+pointer-events: all;
+}
+
+.settings-box {
+width: 300px;
+max-width: calc(100vw - 32px);
+background: #0d0d0d;
+border: 1px solid #1e1e1e;
+border-radius: 10px;
+overflow: hidden;
+-webkit-box-shadow: 0 0 0 1px rgba(180,20,20,.06), 0 24px 60px rgba(0,0,0,.9);
+box-shadow: 0 0 0 1px rgba(180,20,20,.06), 0 24px 60px rgba(0,0,0,.9);
+-webkit-transform: translateY(12px);
+transform: translateY(12px);
+-webkit-transition: -webkit-transform .25s cubic-bezier(.16,1,.3,1);
+transition: transform .25s cubic-bezier(.16,1,.3,1);
+}
+
+.settings-overlay.open .settings-box {
+-webkit-transform: translateY(0);
+transform: translateY(0);
+}
+
+.settings-header {
+padding: 12px 14px;
+border-bottom: 1px solid #1a1a1a;
+display: -webkit-flex;
+display: flex;
+-webkit-align-items: center;
+align-items: center;
+-webkit-justify-content: space-between;
+justify-content: space-between;
+}
+
+.settings-title {
+font-size: 12px;
+font-weight: 600;
+color: #e8e8e8;
+}
+
+.settings-close {
+background: none;
+border: 1px solid #1e1e1e;
+color: #444;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 9px;
+padding: 2px 7px;
+border-radius: 4px;
+cursor: pointer;
+-webkit-appearance: none;
+-webkit-transition: all .15s;
+transition: all .15s;
+letter-spacing: .04em;
+}
+.settings-close:hover { border-color: #444; color: #888; }
+
+.settings-body { padding: 14px; }
+
+.settings-section {
+margin-bottom: 16px;
+}
+.settings-section:last-child { margin-bottom: 0; }
+
+.settings-section-title {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 9px;
+color: #c0392b;
+letter-spacing: .08em;
+text-transform: uppercase;
+margin-bottom: 8px;
+padding-bottom: 4px;
+border-bottom: 1px solid #1a1a1a;
+}
+
+.settings-row {
+margin-bottom: 10px;
+}
+.settings-row:last-child { margin-bottom: 0; }
+
+.settings-row-label {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 9px;
+color: #444;
+letter-spacing: .05em;
+margin-bottom: 5px;
+}
+
+.settings-input-row {
+display: -webkit-flex;
+display: flex;
+gap: 6px;
+}
+
+.settings-input {
+-webkit-flex: 1;
+flex: 1;
+padding: 6px 10px;
+background: #111;
+border: 1px solid #1e1e1e;
+border-radius: 6px;
+color: #e8e8e8;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 12px;
+letter-spacing: .06em;
+outline: none;
+-webkit-transition: border-color .15s;
+transition: border-color .15s;
+-webkit-appearance: none;
+}
+.settings-input:focus { border-color: rgba(192,57,43,.4); }
+.settings-input::placeholder { color: #2a2a2a; }
+
+.settings-save-btn {
+padding: 6px 12px;
+background: rgba(192,57,43,.12);
+border: 1px solid rgba(192,57,43,.35);
+border-radius: 6px;
+color: #c0392b;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 9px;
+letter-spacing: .05em;
+text-transform: uppercase;
+cursor: pointer;
+-webkit-transition: all .15s;
+transition: all .15s;
+-webkit-appearance: none;
+-webkit-flex-shrink: 0;
+flex-shrink: 0;
+}
+.settings-save-btn:hover { background: rgba(192,57,43,.2); border-color: #c0392b; }
+.settings-save-btn.saved { border-color: #27ae60; color: #27ae60; background: rgba(39,174,96,.08); }
+
+.settings-info {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 9px;
+color: #2a2a2a;
+margin-top: 5px;
+letter-spacing: .03em;
+}
+
+.settings-danger-btn {
+width: 100%;
+padding: 7px;
+background: transparent;
+border: 1px solid #2a1010;
+border-radius: 6px;
+color: #5a1a1a;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 9px;
+letter-spacing: .06em;
+text-transform: uppercase;
+cursor: pointer;
+-webkit-transition: all .15s;
+transition: all .15s;
+-webkit-appearance: none;
+}
+.settings-danger-btn:hover { border-color: #c0392b; color: #c0392b; background: rgba(192,57,43,.06); }
+
+/* settings gear button in titlebar */
+.gear-btn {
+background: transparent;
+border: 1px solid #1a1a1a;
+border-radius: 4px;
+color: #2a2a2a;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 9px;
+padding: 2px 7px;
+cursor: pointer;
+-webkit-transition: all .15s;
+transition: all .15s;
+-webkit-appearance: none;
+letter-spacing: .04em;
+}
+.gear-btn:hover { border-color: #444; color: #666; }
+
+/* settings gate */
+.settings-gate {
+padding: 14px;
+}
+.settings-gate-title {
+font-size: 12px;
+font-weight: 600;
+color: #e8e8e8;
+margin-bottom: 4px;
+}
+.settings-gate-sub {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 9px;
+color: #2d2d2d;
+margin-bottom: 12px;
+letter-spacing: .04em;
+}
 </style>
 
 </head>
 <body>
 
-<div class="container">
+<div class="gate-overlay" id="gateOverlay">
+  <div class="gate-box">
+    <div class="gate-header">
+      <div class="gate-title">Access Required</div>
+      <div class="gate-sub">// enter code to unlock scripts</div>
+    </div>
+    <div class="gate-body">
+      <div class="gate-label">Access Code</div>
+      <div class="gate-input-wrap">
+        <input class="gate-input" id="gateInput" type="password" placeholder="enter code..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        <button class="gate-toggle" id="gateToggle" onclick="toggleGateVis()">show</button>
+      </div>
+      <div class="gate-error" id="gateError"></div>
+      <button class="gate-btn" onclick="submitCode()">Unlock</button>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="mainContainer">
   <div class="chrome">
     <div class="titlebar">
       <div class="dot dot-r"></div>
@@ -515,9 +940,55 @@ to   { height: 10px; }
 
 <div class="footer">
   <div class="count" id="count"></div>
+  <button class="gear-btn" onclick="openSettings()">&#9881; settings</button>
 </div>
 ```
 
+  </div>
+</div>
+
+<!-- Settings Panel -->
+
+<div class="settings-overlay" id="settingsOverlay">
+  <div class="settings-box">
+    <div class="settings-header">
+      <span class="settings-title">Settings</span>
+      <button class="settings-close" onclick="closeSettings()">close</button>
+    </div>
+    <!-- Settings gate -->
+    <div id="settingsGate" class="settings-gate">
+      <div class="settings-gate-title">Admin Access</div>
+      <div class="settings-gate-sub">// enter settings code</div>
+      <div class="gate-input-wrap">
+        <input class="gate-input" id="settingsGateInput" type="password" placeholder="enter code..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        <button class="gate-toggle" onclick="toggleSettingsVis()">show</button>
+      </div>
+      <div class="gate-error" id="settingsGateError"></div>
+      <button class="gate-btn" onclick="submitSettingsCode()" style="margin-top:12px">Enter</button>
+    </div>
+    <!-- Settings content (hidden until unlocked) -->
+    <div id="settingsContent" style="display:none">
+      <div class="settings-body">
+        <div class="settings-section">
+          <div class="settings-section-title">Access Code</div>
+          <div class="settings-row">
+            <div class="settings-row-label">Current user code</div>
+            <div class="settings-input-row">
+              <input class="settings-input" id="newCodeInput" type="text" placeholder="new code..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+              <button class="settings-save-btn" id="saveCodeBtn" onclick="saveNewCode()">save</button>
+            </div>
+            <div class="settings-info" id="currentCodeInfo"></div>
+          </div>
+        </div>
+        <div class="settings-section">
+          <div class="settings-section-title">Sessions</div>
+          <div class="settings-row">
+            <div class="settings-row-label">Reset all user sessions (forces re-entry of code)</div>
+            <button class="settings-danger-btn" onclick="resetSessions()">Reset All Sessions</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -713,6 +1184,128 @@ function onFilter() { render(); }
 
 render();
 
+
+/* ── ACCESS GATE ── */
+var STORAGE_KEY      = 'pg_access';
+var CODE_KEY         = 'pg_code';
+var SETTINGS_CODE    = '1947';
+var DEFAULT_CODE     = 'AQqFhjoQ';
+var settingsUnlocked = false;
+
+function getAccessCode() {
+  try {
+    return localStorage.getItem(CODE_KEY) || DEFAULT_CODE;
+  } catch(e) { return DEFAULT_CODE; }
+}
+
+function unlockUI() {
+  document.getElementById('gateOverlay').style.display = 'none';
+  document.getElementById('mainContainer').classList.add('unlocked');
+}
+
+function checkAccess() {
+  try {
+    if (localStorage.getItem(STORAGE_KEY) === '1') {
+      unlockUI();
+    }
+  } catch(e) {}
+}
+
+function submitCode() {
+  var val = document.getElementById('gateInput').value.trim();
+  var inp = document.getElementById('gateInput');
+  var err = document.getElementById('gateError');
+  if (val === getAccessCode()) {
+    try { localStorage.setItem(STORAGE_KEY, '1'); } catch(e) {}
+    var overlay = document.getElementById('gateOverlay');
+    overlay.classList.add('hide');
+    document.getElementById('mainContainer').classList.add('unlocked');
+    setTimeout(function() { overlay.style.display = 'none'; }, 500);
+  } else {
+    err.textContent = '// incorrect code';
+    inp.classList.add('error');
+    setTimeout(function() { inp.classList.remove('error'); err.textContent = ''; }, 1000);
+  }
+}
+
+function toggleGateVis() {
+  var inp = document.getElementById('gateInput');
+  var btn = document.getElementById('gateToggle');
+  if (inp.type === 'password') { inp.type = 'text'; btn.textContent = 'hide'; }
+  else { inp.type = 'password'; btn.textContent = 'show'; }
+}
+
+document.getElementById('gateInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' || e.keyCode === 13) { submitCode(); }
+});
+
+/* ── SETTINGS ── */
+function openSettings() {
+  settingsUnlocked = false;
+  document.getElementById('settingsGate').style.display = 'block';
+  document.getElementById('settingsContent').style.display = 'none';
+  document.getElementById('settingsGateInput').value = '';
+  document.getElementById('settingsGateError').textContent = '';
+  document.getElementById('settingsOverlay').classList.add('open');
+}
+
+function closeSettings() {
+  document.getElementById('settingsOverlay').classList.remove('open');
+  settingsUnlocked = false;
+}
+
+function submitSettingsCode() {
+  var val = document.getElementById('settingsGateInput').value.trim();
+  var inp = document.getElementById('settingsGateInput');
+  var err = document.getElementById('settingsGateError');
+  if (val === SETTINGS_CODE) {
+    settingsUnlocked = true;
+    document.getElementById('settingsGate').style.display = 'none';
+    document.getElementById('settingsContent').style.display = 'block';
+    var current = getAccessCode();
+    document.getElementById('newCodeInput').value = current;
+    document.getElementById('currentCodeInfo').textContent = '// active code: ' + current;
+  } else {
+    err.textContent = '// incorrect code';
+    inp.classList.add('error');
+    setTimeout(function() { inp.classList.remove('error'); err.textContent = ''; }, 1000);
+  }
+}
+
+function toggleSettingsVis() {
+  var inp = document.getElementById('settingsGateInput');
+  var btn = inp.nextElementSibling;
+  if (inp.type === 'password') { inp.type = 'text'; btn.textContent = 'hide'; }
+  else { inp.type = 'password'; btn.textContent = 'show'; }
+}
+
+function saveNewCode() {
+  var val = document.getElementById('newCodeInput').value.trim();
+  if (!val) return;
+  try { localStorage.setItem(CODE_KEY, val); } catch(e) {}
+  document.getElementById('currentCodeInfo').textContent = '// active code: ' + val;
+  var btn = document.getElementById('saveCodeBtn');
+  btn.textContent = 'saved';
+  btn.classList.add('saved');
+  setTimeout(function() { btn.textContent = 'save'; btn.classList.remove('saved'); }, 1500);
+}
+
+function resetSessions() {
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+  var btn = document.querySelector('.settings-danger-btn');
+  btn.textContent = 'done — sessions cleared';
+  setTimeout(function() { btn.textContent = 'Reset All Sessions'; }, 2000);
+}
+
+document.getElementById('settingsGateInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' || e.keyCode === 13) { submitSettingsCode(); }
+});
+
+document.getElementById('settingsOverlay').addEventListener('click', function(e) {
+  if (e.target === this) { closeSettings(); }
+});
+
+checkAccess();
 </script>
 
 </body>
