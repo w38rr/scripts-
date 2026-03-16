@@ -261,6 +261,26 @@ border-color: rgba(192,57,43,.35);
 color: #c0392b;
 }
 
+.tab-count {
+display: inline-block;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 8px;
+background: #1a1a1a;
+color: #333;
+border-radius: 3px;
+padding: 0px 4px;
+margin-left: 4px;
+letter-spacing: 0;
+vertical-align: middle;
+-webkit-transition: all .15s;
+transition: all .15s;
+}
+
+.tab.active .tab-count {
+background: rgba(192,57,43,.2);
+color: #c0392b;
+}
+
 /* ── LIST ── */
 .script-list {
 max-height: 380px;
@@ -565,22 +585,36 @@ var toastTimer, toastHide;
 /* ── BUILD TABS ── */
 var tabsWrap = document.getElementById('tabsWrap');
 CATEGORIES.forEach(function(cat) {
+  var count = cat === 'all' ? scripts.length : scripts.filter(function(s){ return s[1] === cat; }).length;
   var btn = document.createElement('button');
   btn.className = 'tab' + (cat === 'all' ? ' active' : '');
-  btn.textContent = cat;
   btn.setAttribute('data-cat', cat);
+  btn.innerHTML = cat + '<span class="tab-count" data-cat-count="' + cat + '">' + count + '</span>';
   tabsWrap.appendChild(btn);
 });
 
 tabsWrap.addEventListener('click', function(e) {
-  var btn = e.target;
-  if (!btn.classList.contains('tab')) return;
+  var btn = e.target.classList.contains('tab') ? e.target : e.target.closest('.tab');
+  if (!btn || !btn.classList.contains('tab')) return;
   var cats = tabsWrap.querySelectorAll('.tab');
   for (var i = 0; i < cats.length; i++) cats[i].classList.remove('active');
   btn.classList.add('active');
   activeTab = btn.getAttribute('data-cat');
   render();
 });
+
+function updateTabCounts(search) {
+  CATEGORIES.forEach(function(cat) {
+    var el = tabsWrap.querySelector('[data-cat-count="' + cat + '"]');
+    if (!el) return;
+    var count = scripts.filter(function(s) {
+      var matchSearch = search ? s[0].toLowerCase().indexOf(search) !== -1 : true;
+      var matchCat = cat === 'all' || s[1] === cat;
+      return matchSearch && matchCat;
+    }).length;
+    el.textContent = count;
+  });
+}
 
 document.getElementById('badge').textContent = scripts.length + ' scripts';
 
@@ -613,6 +647,8 @@ function render() {
     search || activeTab !== 'all'
       ? filtered.length + ' / ' + scripts.length
       : scripts.length + ' total';
+
+  updateTabCounts(search);
 }
 
 /* ── COPY ── */
