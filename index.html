@@ -475,6 +475,9 @@ max-width: 160px;
 overflow: hidden;
 text-overflow: ellipsis;
 }
+
+to   { height: 10px; }
+}
 </style>
 
 </head>
@@ -487,7 +490,7 @@ text-overflow: ellipsis;
       <div class="dot dot-y"></div>
       <div class="dot dot-g"></div>
       <span class="title-text">playground_scripts.exe</span>
-    </div>
+      </div>
 
 ```
 <div class="header">
@@ -539,6 +542,7 @@ var scripts = [
   ["Marvellous Smackdown v2", "characters", 'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Characters%20v2"))()'],
   ["Marvellous Smackdown v3", "characters", 'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Characters%20v3"))()'],
   ["Chicago Trenches",   "combat",     'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Chicago-Trenches"))()'],
+  ["Chicago Streets 2",  "combat",     'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/refs/heads/main/Chicago-streets-2"))()'],
   ["Chose ur power",     "combat",     'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Chose%20ur%20power"))()'],
   ["Draw a raft",        "utility",    'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Draw-a-raft"))()'],
   ["FPV DRONE",          "utility",    'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/FPV%20DRONE"))()'],
@@ -594,12 +598,17 @@ CATEGORIES.forEach(function(cat) {
 });
 
 tabsWrap.addEventListener('click', function(e) {
-  var btn = e.target.classList.contains('tab') ? e.target : e.target.closest('.tab');
-  if (!btn || !btn.classList.contains('tab')) return;
+  var el = e.target;
+  /* walk up to find the .tab button (handles click on inner span) */
+  while (el && el !== tabsWrap) {
+    if (el.classList && el.classList.contains('tab')) break;
+    el = el.parentNode;
+  }
+  if (!el || !el.classList.contains('tab')) return;
   var cats = tabsWrap.querySelectorAll('.tab');
   for (var i = 0; i < cats.length; i++) cats[i].classList.remove('active');
-  btn.classList.add('active');
-  activeTab = btn.getAttribute('data-cat');
+  el.classList.add('active');
+  activeTab = el.getAttribute('data-cat');
   render();
 });
 
@@ -618,7 +627,6 @@ function updateTabCounts(search) {
 
 document.getElementById('badge').textContent = scripts.length + ' scripts';
 
-/* ── RENDER ── */
 function render() {
   var search = (document.getElementById('search').value || '').toLowerCase();
   var list = document.getElementById('scriptList');
@@ -703,6 +711,7 @@ document.getElementById('scriptList').addEventListener('click', function(e) {
 function onFilter() { render(); }
 
 render();
+
 </script>
 
 </body>
