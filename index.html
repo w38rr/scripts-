@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -13,7 +12,7 @@ html, body, * { -webkit-box-sizing: border-box; box-sizing: border-box; margin: 
 html { background: #000; }
 
 body {
-font-family: ‘Inter’, system-ui, sans-serif;
+font-family: 'Inter', system-ui, sans-serif;
 background: #000 !important;
 color: #aab8cc;
 min-height: 100vh;
@@ -26,7 +25,7 @@ padding: 20px 12px 40px;
 }
 
 body::before {
-content: ‘’;
+content: '';
 position: fixed;
 top: 0; left: 0; right: 0; bottom: 0;
 background-image:
@@ -38,7 +37,7 @@ z-index: 0;
 }
 
 body::after {
-content: ‘’;
+content: '';
 position: fixed;
 top: -30%; left: 50%;
 -webkit-transform: translateX(-50%);
@@ -95,7 +94,7 @@ gap: 5px;
 .dot-g { background: #333; }
 
 .title-text {
-font-family: ‘Share Tech Mono’, monospace;
+font-family: 'Share Tech Mono', monospace;
 font-size: 10px;
 color: #2a2a2a;
 margin: 0 auto;
@@ -154,7 +153,7 @@ line-height: 1;
 }
 
 .header-text p {
-font-family: ‘Share Tech Mono’, monospace;
+font-family: 'Share Tech Mono', monospace;
 font-size: 9px;
 color: #2d2d2d;
 margin-top: 2px;
@@ -162,7 +161,7 @@ letter-spacing: .04em;
 }
 
 .badge {
-font-family: ‘Share Tech Mono’, monospace;
+font-family: 'Share Tech Mono', monospace;
 font-size: 9px;
 background: rgba(192,57,43,.1);
 border: 1px solid rgba(192,57,43,.25);
@@ -194,14 +193,14 @@ pointer-events: none;
 line-height: 1;
 }
 
-input[type=“text”] {
+input[type="text"] {
 width: 100%;
 padding: 6px 10px 6px 28px;
 background: #111;
 border: 1px solid #1e1e1e;
 border-radius: 6px;
 color: #aab8cc;
-font-family: ‘Inter’, sans-serif;
+font-family: 'Inter', sans-serif;
 font-size: 12px;
 outline: none;
 -webkit-transition: border-color .15s, box-shadow .15s;
@@ -209,8 +208,8 @@ transition: border-color .15s, box-shadow .15s;
 -webkit-appearance: none;
 }
 
-input[type=“text”]::placeholder { color: #2d2d2d; }
-input[type=“text”]:focus {
+input[type="text"]::placeholder { color: #2d2d2d; }
+input[type="text"]:focus {
 border-color: rgba(192,57,43,.5);
 -webkit-box-shadow: 0 0 0 3px rgba(192,57,43,.07);
 box-shadow: 0 0 0 3px rgba(192,57,43,.07);
@@ -229,7 +228,7 @@ white-space: nowrap;
 
 .tab {
 display: inline-block;
-font-family: ‘Share Tech Mono’, monospace;
+font-family: 'Share Tech Mono', monospace;
 font-size: 9px;
 letter-spacing: .05em;
 text-transform: uppercase;
@@ -258,7 +257,7 @@ color: #c0392b;
 
 .tab-count {
 display: inline-block;
-font-family: ‘Share Tech Mono’, monospace;
+font-family: 'Share Tech Mono', monospace;
 font-size: 8px;
 background: #1a1a1a;
 color: #333;
@@ -317,7 +316,7 @@ to   { opacity: 1; }
 }
 
 .row-num {
-font-family: ‘Share Tech Mono’, monospace;
+font-family: 'Share Tech Mono', monospace;
 font-size: 9px;
 color: #222;
 width: 20px;
@@ -337,7 +336,7 @@ text-overflow: ellipsis;
 }
 
 .row-tag {
-font-family: ‘Share Tech Mono’, monospace;
+font-family: 'Share Tech Mono', monospace;
 font-size: 8px;
 color: #2a2a2a;
 background: #111;
@@ -357,7 +356,7 @@ background: transparent;
 color: #3a3a3a;
 padding: 2px 8px;
 border-radius: 4px;
-font-family: ‘Share Tech Mono’, monospace;
+font-family: 'Share Tech Mono', monospace;
 font-size: 9px;
 letter-spacing: .05em;
 cursor: pointer;
@@ -400,7 +399,7 @@ background: #080808;
 }
 
 .count {
-font-family: ‘Share Tech Mono’, monospace;
+font-family: 'Share Tech Mono', monospace;
 font-size: 9px;
 color: #2a2a2a;
 letter-spacing: .04em;
@@ -409,7 +408,7 @@ letter-spacing: .04em;
 .no-results {
 text-align: center;
 padding: 20px 0;
-font-family: ‘Share Tech Mono’, monospace;
+font-family: 'Share Tech Mono', monospace;
 font-size: 11px;
 color: #2a2a2a;
 }
@@ -455,14 +454,14 @@ flex-shrink: 0;
 }
 
 .toast-text {
-font-family: ‘Share Tech Mono’, monospace;
+font-family: 'Share Tech Mono', monospace;
 font-size: 10px;
 color: #888;
 letter-spacing: .05em;
 }
 
 .toast-name {
-font-family: ‘Share Tech Mono’, monospace;
+font-family: 'Share Tech Mono', monospace;
 font-size: 10px;
 color: #ccc;
 letter-spacing: .04em;
@@ -473,7 +472,7 @@ text-overflow: ellipsis;
 
 /* ── NEW BADGE ── */
 .new-badge {
-font-family: ‘Share Tech Mono’, monospace;
+font-family: 'Share Tech Mono', monospace;
 font-size: 7px;
 font-weight: 700;
 letter-spacing: .08em;
@@ -499,7 +498,6 @@ animation: badgePulse 2s ease-in-out infinite;
 50%       { opacity: .5; }
 }
 </style>
-
 </head>
 <body>
 
@@ -512,37 +510,33 @@ animation: badgePulse 2s ease-in-out infinite;
       <span class="title-text">playground_scripts.exe</span>
     </div>
 
-```
-<div class="header">
-  <div class="header-left">
-    <div class="logo-bar"></div>
-    <div class="header-text">
-      <h1>Playground Scripts</h1>
-      <p>// roblox exploit library</p>
+    <div class="header">
+      <div class="header-left">
+        <div class="logo-bar"></div>
+        <div class="header-text">
+          <h1>Playground Scripts</h1>
+          <p>// roblox exploit library</p>
+        </div>
+      </div>
+      <div class="badge" id="badge">-- --</div>
     </div>
-  </div>
-  <div class="badge" id="badge">-- --</div>
-</div>
 
-<div class="search-wrap">
-  <span class="search-icon">&#8981;</span>
-  <input type="text" id="search" placeholder="Search scripts..." oninput="onFilter()">
-</div>
+    <div class="search-wrap">
+      <span class="search-icon">&#8981;</span>
+      <input type="text" id="search" placeholder="Search scripts..." oninput="onFilter()">
+    </div>
 
-<div class="tabs-wrap" id="tabsWrap"></div>
+    <div class="tabs-wrap" id="tabsWrap"></div>
 
-<div class="script-list" id="scriptList"></div>
+    <div class="script-list" id="scriptList"></div>
 
-<div class="footer">
-  <div class="count" id="count"></div>
-</div>
-```
-
+    <div class="footer">
+      <div class="count" id="count"></div>
+    </div>
   </div>
 </div>
 
 <!-- Toast -->
-
 <div class="toast" id="toast">
   <div class="toast-dot"></div>
   <span class="toast-text">copied —</span>
@@ -550,6 +544,7 @@ animation: badgePulse 2s ease-in-out infinite;
 </div>
 
 <script>
+// Updated scripts array with the new "Characters v4" added (category: characters)
 var scripts = [
   ["Marvellous Smackdown All", "characters", 'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/All%20characters"))()'],
   ["Arcade Basketball",  "sports",     'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Arcade%20basketball"))()'],
@@ -561,6 +556,8 @@ var scripts = [
   ["Marvellous Smackdown v1", "characters", 'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Characters%20v1"))()'],
   ["Marvellous Smackdown v2", "characters", 'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Characters%20v2"))()'],
   ["Marvellous Smackdown v3", "characters", 'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Characters%20v3"))()'],
+  // NEW SCRIPT: Characters v4
+  ["Characters v4",      "characters", 'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/refs/heads/main/Characters%20v4"))()'],
   ["Chicago Trenches",   "combat",     'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Chicago-Trenches"))()'],
   ["Chicago Streets 2",  "combat",     'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/refs/heads/main/Chicago-streets-2"))()'],
   ["Chose ur power",     "combat",     'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/main/Chose%20ur%20power"))()'],
@@ -603,7 +600,8 @@ var scripts = [
   ["Hooked",             "combat",     'loadstring(game:HttpGet("https://raw.githubusercontent.com/w38rr/w38r/refs/heads/main/untitled.txt"))()']
 ];
 
-var NEW_SCRIPTS = ['Hyper Speed Runner', 'Chicago Streets 2', 'Hooked'];
+// Mark Characters v4 as NEW (along with existing new scripts)
+var NEW_SCRIPTS = ['Hyper Speed Runner', 'Chicago Streets 2', 'Hooked', 'Characters v4'];
 
 var CATEGORIES = ["all", "combat", "sports", "characters", "roleplay"];
 var activeTab = "all";
@@ -669,7 +667,7 @@ function render() {
       return '<div class="script-row" style="-webkit-animation-delay:' + delay + 'ms;animation-delay:' + delay + 'ms">' +
         '<span class="row-num">' + (i + 1 < 10 ? '0' + (i + 1) : i + 1) + '</span>' +
         (NEW_SCRIPTS.indexOf(s[0]) !== -1 ? '<span class="new-badge">new</span>' : '') +
-        '<span class="row-name">' + s[0] + '</span>' +
+        '<span class="row-name">' + escapeHtml(s[0]) + '</span>' +
         '<span class="row-tag">' + s[1] + '</span>' +
         '<button class="copy-btn" data-idx="' + i + '">copy</button>' +
       '</div>';
@@ -682,6 +680,16 @@ function render() {
       : scripts.length + ' total';
 
   updateTabCounts(search);
+}
+
+// simple helper to prevent XSS from script names (though none contain tags, it's safe)
+function escapeHtml(str) {
+  return str.replace(/[&<>]/g, function(m) {
+    if (m === '&') return '&amp;';
+    if (m === '<') return '&lt;';
+    if (m === '>') return '&gt;';
+    return m;
+  });
 }
 
 /* ── COPY ── */
@@ -737,6 +745,5 @@ function onFilter() { render(); }
 
 render();
 </script>
-
 </body>
 </html>
